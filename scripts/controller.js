@@ -4,7 +4,7 @@ class Controller
   constructor()
   {
     this.snakes = [];
-    this.map = [];
+    this.map;
   }
   
   InitialisateGame(pla)
@@ -13,7 +13,8 @@ class Controller
     
     if(pla == 1)
     {
-      this.snakes.push(new Snake(new Victor()));
+      var a = new Victor(Math.floor(this.map.weight / 2), Math.floor(this.map.height / 2));
+      this.snakes.push(new Snake(a, 3));
     }
   }
   
@@ -36,5 +37,7 @@ class Controller
   {
     pos = snake.GetNextPosition();
     this.map.CheckPosition();
+    
+    return 0;
   }
 }

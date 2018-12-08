@@ -1,66 +1,31 @@
 <script src="scripts/pixi.min.js"></script>
-<script scr="scripts/victor.js"></script>
-<script scr="scripts/controller.js"></script>
-<script scr="scripts/libfunc.js"></script>
-<script scr="scripts/map.js"></script>
-<script scr="scripts/snake.js"></script>
-<script scr="scripts/draw.js"></script>
-
+<script src="scripts/victor.js"></script>
+<script src="scripts/controller.js"></script>
+<script src="scripts/libfunc.js"></script>
+<script src="scripts/map.js"></script>
+<script src="scripts/snake.js"></script>
+<script src="scripts/draw.js"></script>
+<head>
+  <style type="text/css">
+    body {
+      margin:0;
+      padding:0;
+      overflow:hidden;
+    }
+    
+    canvas {
+      display:block;
+    }
+  </style>
+</head>
 <body>
-  <!--<script>
-    var app = new PIXI.Application(100, 100, {backgroundColor : 0x1099bb});
-    document.body.appendChild(app.view);
-    
-    // create a new Sprite from an image path
-    var bunny = PIXI.Sprite.fromImage('images/bunny.png')
-    
-    // center the sprite's anchor point
-    bunny.anchor.set(0.5);
-    
-    // move the sprite to the center of the screen
-    bunny.x = app.screen.width / 2;
-    bunny.y = app.screen.height / 2;
-    
-    app.stage.addChild(bunny);
-    
-    // Listen for animate update
-    app.ticker.add(function(delta) {
-      // just for fun, let's rotate mr rabbit a little
-      // delta is 1 if running at 100% performance
-      // creates frame-independent transformation
-      bunny.rotation += 0.1 * delta;
-    });
-  </script>-->
   
   <script type="text/javascript">
-    let controller = new Controller();
+    var controller = new Controller();
     controller.InitialisateGame(1);
     
-    var w = controller.map.width;
-    var h = controller.map.height;
-    
-    var app = new PIXI.Application(100, 100, {backgroundColor : 0x1099bb});
-    document.body.appendChild(app.view);
-    
-    // create a new Sprite from an image path
-    var bunny = PIXI.Sprite.fromImage('images/bunny.png')
-    
-    // center the sprite's anchor point
-    bunny.anchor.set(0.5);
-    
-    // move the sprite to the center of the screen
-    bunny.x = app.screen.width / 2;
-    bunny.y = app.screen.height / 2;
-    
-    app.stage.addChild(bunny);
-    
-    // Listen for animate update
-    app.ticker.add(function(delta) {
-    // just for fun, let's rotate mr rabbit a little
-    // delta is 1 if running at 100% performance
-    // creates frame-independent transformation
-    bunny.rotation += 0.1 * delta;
-    });
+    var draw = new Draw();
+    document.write(1);
     
   </script>
 </body>

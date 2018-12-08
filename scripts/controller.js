@@ -3,13 +3,16 @@ class Controller
 {
   constructor()
   {
+    this.factor = 8;
+    this.weight = 256;
+    this.height = 224;
     this.snakes = [];
     this.map;
   }
   
   InitialisateGame(pla)
   {
-    this.map = new Map();
+    this.map = new Map(this.weight / this.factor, this.height / this.factor);
     
     if(pla == 1)
     {

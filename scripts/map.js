@@ -1,21 +1,22 @@
 // class Map
 class Map
 {
-  constructor()
+  constructor(w,h)
   {
-    this.weight = 256/8;
-    this.height = 224/8;
-    this.map[0] = [];
+    this.weight = w;
+    this.height = h;
+    this.map = [];
     this.Create();
   }
   
   Create()
   {
-    for(i = 0; i < this.height; i++)
+    for(var i = 0; i < this.height; i++)
     {
-      for(j = 0; j < this.weight; j++)
+      this.map[i] = [];
+      for(var j = 0; j < this.weight; j++)
       {
-        this.map[j][i] = 0;
+        this.map[i][j] = 0;
       }
     }
   }

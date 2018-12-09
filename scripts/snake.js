@@ -37,9 +37,8 @@ class Snake
   
   MoveYourself()
   {
-    var nex = this.GetNextPosition;
-    
-    for(i = this.body.lenght-1; i > 0; i--)
+    var nex = this.GetNextPosition();
+    for (var i = this.body.length-1; i > 0; i--)
     {
       if(this.addTale)
       {
@@ -49,27 +48,19 @@ class Snake
       if(this.body[i] == this.body[i-1]) continue;
       this.body[i] = this.body[i-1];
     }
-    
     this.body[0] = nex;
   }
   
   GetNextPosition()
   {
-    var rot = this.ConvertRotation(this.rotate);
-    //this.masterRotate = rot;
-    //this.rotate = 0;
-    return this.body[0] + rot;
+    this.masterRotate += this.rotate;
+    var rot = new ConvertRotation(this.masterRotate);
+    return new Victor(rot.x + this.body[0].x, rot.y + this.body[0].y);
   }
   
   DevideYourself(a)
   {
     //create snake
-  }
-  
-  CheckNextStep()
-  {
-    var nex = this.GetNextPosition();
-    //check collision
   }
   
   Die()

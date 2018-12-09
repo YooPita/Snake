@@ -1,38 +1,61 @@
 // class Draw
 class Draw
 {
-  constructor()
+  constructor(con)
   {
-    const app = new PIXI.Application({
-      autoResize: true,
-      resolution: devicePixelRatio
-    });
-    document.body.appendChild(app.view);
+    this.factor = 3;
+    //Create a Pixi Application
+    let app = new PIXI.Application(
+      {
+        width: con.weight,
+        height: con.height,
+        antialias: true,    // default: false
+        transparent: false, // default: false
+        resolution: 2       // default: 1
+      });
     
-    // Lets create a red square, this isn't
-    // necessary only to show something that can be position
-    // to the bottom-right corner
-    const rect = new PIXI.Graphics()
-      .beginFill(0xff0000)
-      .drawRect(-100, -100, 100, 100);
+    /*con.snakes.forEach(function(item, i, arr) {
+      alert( i + ": " + item.body[0].x );
+    });*/
     
-    // Add it to the stage
-    app.stage.addChild(rect);
+    var graphics = new PIXI.Graphics();
+    app.stage.addChild(graphics);
     
-    // Listen for window resize events
-    window.addEventListener('resize', resize);
-    
-    // Resize function window
-    function resize() {
-      // Resize the renderer
-      app.renderer.resize(window.innerWidth, window.innerHeight);
+    app.ticker.add(function(delta){
+      graphics.clear();
+      graphics.beginFill(0xF8F8FF, 1);
       
-      // You can use the 'screen' property as the renderer visible
-      // area, this is more useful than view.width/height because
-      // it handles resolution
-      rect.position.set(app.screen.width, app.screen.height);
-    }
+      con.snakes.forEach(function(item, i, arr) {
+        item.body.forEach(function(item, i, arr) {
+          graphics.drawRect(item.x * con.factor, item.y * con.factor, 8, 8);
+        });
+        //alert( i + ": " + item.body[0].x );
+      });
+      
+      
+    });
     
-    resize();
+    /*app.ticker.add(function(delta){
+        var graphics = new PIXI.Graphics();
+        graphics.beginFill(0xF8F8FF, 1);
+        
+        con.snakes.forEach(function(item, i, arr) {
+          item.body.forEach(function(item, i, arr) {
+            graphics.drawRect(item.x * con.factor, item.y * con.factor, 8, 8);
+          });
+          //alert( i + ": " + item.body[0].x );
+        });
+        
+        app.stage.addChild(graphics);
+      });*/
+    
+    
+    //Add the canvas that Pixi automatically created for you to the HTML document
+    document.body.appendChild(app.view);
+  }
+  
+  DrawRectangle()
+  {
+    
   }
 }

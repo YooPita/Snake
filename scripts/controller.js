@@ -23,23 +23,25 @@ class Controller
   
   Step()
   {
-    this.snakes.forEach(function(element)
+    this.snakes.forEach(function(item)
     {
-      if(this.CheckCollision(element)==1) // if next step to collider
+      
+      /*if(new CheckCollision(item)) // if next step to collider
       {
-        element.Die();  // kill this snake
+        item.Die();  // kill this snake
       }
       else
       {
-        element.MoveYourself(); // move this snake
-      }
+        item.MoveYourself(); // move this snake
+      }*/
+      item.MoveYourself();
     });
   }
   
-  CheckCollision(snake)
+  CheckCollision()
   {
-    pos = snake.GetNextPosition();
-    this.map.CheckPosition();
+    /*pos = snake.GetNextPosition();
+    this.map.CheckPosition();*/
     
     return 0;
   }

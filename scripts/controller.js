@@ -18,14 +18,24 @@ class Controller
     {
       var a = new Victor(Math.floor(this.map.weight / 2), Math.floor(this.map.height / 2));
       this.snakes.push(new Snake(a, 3));
-    }
+      let left = keyboard("ArrowLeft"),
+          up = keyboard("ArrowUp"),
+          right = keyboard("ArrowRight"),
+          down = keyboard("ArrowDown");
+      
+      up.press = () => { this.snakes[0].rotate = 0; };
+      right.press = () => { this.snakes[0].rotate = 1; };
+      down.press = () => { this.snakes[0].rotate = 2; };
+      left.press = () => { this.snakes[0].rotate = 3; };
+      
+    };
   }
   
   Step()
   {
     this.snakes.forEach(function(item)
     {
-      
+
       /*if(new CheckCollision(item)) // if next step to collider
       {
         item.Die();  // kill this snake
@@ -37,12 +47,12 @@ class Controller
       item.MoveYourself();
     });
   }
-  
+
   CheckCollision()
   {
     /*pos = snake.GetNextPosition();
     this.map.CheckPosition();*/
-    
+
     return 0;
   }
 }

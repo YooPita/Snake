@@ -1,10 +1,14 @@
 // Lib of functions
 
-function ConvertRotation(a)
+function RotationNormalize(a)
 {
   if(a < 0) a = 4;
-  else if(a > 4) a = 0;
-  
+  else if(a > 3) a = 0;
+  return a;
+}
+
+function RotationConvert(a)
+{
   switch(a)
   {
     case 0:
@@ -16,6 +20,15 @@ function ConvertRotation(a)
     default:
       return Victor(-1, 0);
   }
+}
+
+function RotationDifference(a, b) // a - MasterRotate
+{
+  let c = a - b;
+  if(Math.abs(c) == 2 || c == 0) return 0;
+  if(c < 0) c += 2;
+  else c -= 2;
+  return c;
 }
 
 // https://github.com/kittykatattack/learningPixi#keyboard

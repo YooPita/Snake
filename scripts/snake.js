@@ -8,11 +8,11 @@ class Snake
     this.snack = [];
     this.addTale = false;
     this.masterRotate = 0; // 0 up, 1 right etc
-    this.rotate = 0; // -1 left, 1 right
+    this.rotate = 0; // 0 up, 1 right etc
     
     if(len > 1) // set lenght
     {
-      for(var i = 1; i < len; i++)
+      for(let i = 1; i < len; i++)
       {
         this.body.push(pos);
       }
@@ -37,8 +37,8 @@ class Snake
   
   MoveYourself()
   {
-    var nex = this.GetNextPosition();
-    for (var i = this.body.length-1; i > 0; i--)
+    let nex = this.GetNextPosition();
+    for (let i = this.body.length-1; i > 0; i--)
     {
       if(this.addTale)
       {
@@ -53,8 +53,10 @@ class Snake
   
   GetNextPosition()
   {
-    this.masterRotate += this.rotate;
-    var rot = new ConvertRotation(this.masterRotate);
+    let dif = RotationDifference(this.masterRotate, this.rotate);
+    let rotnor = RotationNormalize(this.masterRotate + dif);
+    let rot = RotationConvert(rotnor);
+    this.masterRotate = rotnor;
     return new Victor(rot.x + this.body[0].x, rot.y + this.body[0].y);
   }
   

@@ -1,16 +1,16 @@
 // class Snake
 class Snake
 {
-  constructor(pos, len)
+  constructor(pos, len) // инициализация змеи
   {
-    this.alive = true;
-    this.body = [pos];
-    this.snack = [];
-    this.addTale = false;
-    this.masterRotate = 0; // 0 up, 1 right etc
-    this.rotate = 0; // 0 up, 1 right etc
+    this.alive = true;  // жива или мертва
+    this.body = [pos];  // массив тела
+    this.snack = [];  // массив еды
+    this.addTale = false; // нужно ли в текущем ходу добавить элемент в тело?
+    this.masterRotate = 0; // глобальный поворот змеи, 0 up, 1 right etc
+    this.rotate = 0; // поворот, который выбрал игрок, 0 up, 1 right etc
     
-    if(len > 1) // set lenght
+    if(len > 1) // генерация тела
     {
       for(let i = 1; i < len; i++)
       {
@@ -19,7 +19,7 @@ class Snake
     }
   }
   
-  SnackMove()
+  SnackMove() // сдвинуть еду
   {
     if (this.snack.lenght>0)
     {
@@ -35,7 +35,7 @@ class Snake
     }
   }
   
-  MoveYourself()
+  MoveYourself()  // сдвинуть змею
   {
     let nex = this.GetNextPosition();
     for (let i = this.body.length-1; i > 0; i--)
@@ -51,7 +51,7 @@ class Snake
     this.body[0] = nex;
   }
   
-  GetNextPosition()
+  GetNextPosition() // получение следующей позиции
   {
     let dif = RotationDifference(this.masterRotate, this.rotate);
     let rotnor = RotationNormalize(this.masterRotate + dif);
@@ -60,12 +60,12 @@ class Snake
     return new Victor(rot.x + this.body[0].x, rot.y + this.body[0].y);
   }
   
-  DevideYourself(a)
+  DevideYourself(a) // разделить себя
   {
     //create snake
   }
   
-  Die()
+  Die() // проиграть)
   {
     this.alive = false;
   }

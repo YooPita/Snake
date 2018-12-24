@@ -1,13 +1,13 @@
 // Lib of functions
 
-function RotationNormalize(a)
+function RotationNormalize(a) // нормализация значения поворота
 {
-  if(a < 0) a = 4;
+  if(a < 0) a = 3;
   else if(a > 3) a = 0;
   return a;
 }
 
-function RotationConvert(a)
+function RotationConvert(a) // конвертация значения поворота в вектор
 {
   switch(a)
   {
@@ -22,7 +22,7 @@ function RotationConvert(a)
   }
 }
 
-function RotationDifference(a, b) // a - MasterRotate
+function RotationDifference(a, b) // разница между поворотами, a - MasterRotate
 {
   let c = a - b;
   if(Math.abs(c) == 2 || c == 0) return 0;

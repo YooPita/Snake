@@ -1,7 +1,7 @@
 // class Draw
 class Draw
 {
-  constructor(con)
+  constructor(con)  // инициализация отрисовщика
   {
     this.factor = 3;
     //Create a Pixi Application

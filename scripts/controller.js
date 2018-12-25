@@ -7,14 +7,16 @@ class Controller
     this.weight = 256;  // ширина игры
     this.height = 224;  // высота игры
     this.snakes = [];   // массив змей
-    this.snacks = [];   // массив еды
+    this.snack;        // объект еды
     this.map;           // текущая карта
   }
   
   InitialisateGame(pla) // инициализация игровой сессии
   {
+    // создание карты
     this.map = new Map(this.weight / this.factor, this.height / this.factor); // создание карты
     
+    // создание игрока
     if(pla == 1)  // если игроков = 1
     {
       var a = new Victor(Math.floor(this.map.weight / 2), Math.floor(this.map.height / 2)); // середина карты
@@ -28,8 +30,11 @@ class Controller
       right.press = () => { this.snakes[0].rotate = 1; };
       down.press = () => { this.snakes[0].rotate = 2; };
       left.press = () => { this.snakes[0].rotate = 3; };
-      
     };
+    
+    // создание еды
+    this.CreateSnack();
+    
   }
   
   Step()  // дейсивие, которое происходит каждый кадр
@@ -49,11 +54,28 @@ class Controller
     });
   }
 
-  CheckCollision()  // функция проверки точки на карте
+  CheckCollision(x, y)  // функция проверки точки на карте
   {
     /*pos = snake.GetNextPosition();
     this.map.CheckPosition();*/
 
     return 0;
+  }
+  
+  CreateSnack() // сгенерировать еду
+  {
+    let w = this.weight / this.factor;
+    let h = this.height / this.factor;
+    let x;
+    let y;
+    let a = true;
+    while(a)
+    {
+      x = Math.floor(Math.random() * w);
+      y = Math.floor(Math.random() * h);
+      a = this.CheckCollision(w, h);
+    }
+    let vec = new Victor(x, y);
+    this.snack = new Snack(vec);
   }
 }

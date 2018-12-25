@@ -25,13 +25,15 @@ class Draw
       graphics.clear();
       graphics.beginFill(0xF8F8FF, 1);
       
+      // отрисовка всех змей
       con.snakes.forEach(function(item, i, arr) {
         item.body.forEach(function(item, i, arr) {
           graphics.drawRect(item.x * con.factor, item.y * con.factor, 8, 8);
         });
-        //alert( i + ": " + item.body[0].x );
       });
       
+      // отрисовка еды
+      graphics.drawRect(con.snack.position.x * con.factor, con.snack.position.y * con.factor, 8, 8);
       
     });
     

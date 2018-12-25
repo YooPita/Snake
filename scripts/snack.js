@@ -1,8 +1,5 @@
 // class Snack
-class Snack
+function Snack(pos)
 {
-  constructor(pos) // инициазация еды, x\y - позиция еды
-  {
-    this.position = pos;
-  }
+  this.position = pos;
 }

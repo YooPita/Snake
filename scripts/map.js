@@ -1,15 +1,11 @@
 // class Map
-class Map
+function Map(w, h)
 {
-  constructor(w,h)
-  {
-    this.weight = w;
-    this.height = h;
-    this.map = [];
-    this.Create();
-  }
+  this.weight = w;
+  this.height = h;
+  this.map = [];
   
-  Create()
+  this.Create = function()
   {
     for(var i = 0; i < this.height; i++)
     {
@@ -21,12 +17,12 @@ class Map
     }
   }
   
-  Open(nam)
+  this.Open = function(nam)
   {
      //open from file
   }
   
-  CheckPosition(pos)
+  this.CheckPosition = function(pos)
   {
     return map[pos.x][pos.y] > 0;
   }

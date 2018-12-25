@@ -1,20 +1,18 @@
 // class Controller
-class Controller
+function Controller()
 {
-  constructor()
-  {
-    this.factor = 8;    // фактор увеличения
-    this.weight = 256;  // ширина игры
-    this.height = 224;  // высота игры
-    this.snakes = [];   // массив змей
-    this.snack;        // объект еды
-    this.map;           // текущая карта
-  }
+  this.factor = 8;    // фактор увеличения
+  this.weight = 256;  // ширина игры
+  this.height = 224;  // высота игры
+  this.snakes = [];   // массив змей
+  this.snack;         // объект еды
+  this.map;           // текущая карта
   
-  InitialisateGame(pla) // инициализация игровой сессии
+  this.InitialisateGame = function(pla) // инициализация игровой сессии
   {
     // создание карты
     this.map = new Map(this.weight / this.factor, this.height / this.factor); // создание карты
+    this.map.Create();
     
     // создание игрока
     if(pla == 1)  // если игроков = 1
@@ -37,24 +35,36 @@ class Controller
     
   }
   
-  Step()  // дейсивие, которое происходит каждый кадр
+  this.Step = function()  // дейсивие, которое происходит каждый кадр
   {
+    //  действия для каждой змеи
     this.snakes.forEach(function(item)
     {
-
-      /*if(new CheckCollision(item)) // if next step to collider
+      /*
+      // проверяем, жива ли змея?
+      if(item.alive)
       {
-        item.Die();  // kill this snake
-      }
-      else
-      {
-        item.MoveYourself(); // move this snake
+        let nextPos = item.GetNextPosition();
+        // проверяем следующую позицию
+        let col = this.CheckCollision(new Victor(0, 0));
+        if(col == 0)
+        {
+          item.MoveYourself(nextPos);
+        }
+        else
+        {
+          item.Die();
+        }
       }*/
-      item.MoveYourself();
+      let nextPos = item.GetNextPosition();
+      item.MoveYourself(nextPos);
     });
   }
-
-  CheckCollision(x, y)  // функция проверки точки на карте
+  
+  // 0 - пусто
+  // 1 - смерть
+  // 2 - еда
+  this.CheckCollision = function(vec)  // функция проверки точки на карте
   {
     /*pos = snake.GetNextPosition();
     this.map.CheckPosition();*/
@@ -62,18 +72,18 @@ class Controller
     return 0;
   }
   
-  CreateSnack() // сгенерировать еду
+  this.CreateSnack = function() // сгенерировать еду
   {
     let w = this.weight / this.factor;
     let h = this.height / this.factor;
     let x;
     let y;
-    let a = true;
-    while(a)
+    let a = 1;
+    while(a > 0)
     {
       x = Math.floor(Math.random() * w);
       y = Math.floor(Math.random() * h);
-      a = this.CheckCollision(w, h);
+      a = this.CheckCollision(new Victor(x, y));
     }
     let vec = new Victor(x, y);
     this.snack = new Snack(vec);
